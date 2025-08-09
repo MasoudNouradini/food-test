@@ -6,9 +6,9 @@ export default {
       sans: "Roboto Mono, monospace"
     },
     colors: {
-      primary: "#FBBF24",
-      secondary: "#F59E0B",
-      background: "#FFF9E9",
+      primary: "#FFFFF0",
+      secondary: "#FEA405",
+      background: "#DBE4C9",
       text: "#1F2937",
       border: "#E5E7EB",
       error: "#EF4444"

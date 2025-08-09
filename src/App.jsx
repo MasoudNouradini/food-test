@@ -1,9 +1,11 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AppLayout from "./ui/AppLayout";
 import Home from "./ui/Home";
 import Error from "./ui/Error";
-import Menu from "./features/menu/Menu";
+import Menu, { loader as menuLoader } from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
+import Login from "./ui/Login";
+import Signup from "./ui/Signup";
 
 const router = createBrowserRouter([
   {
@@ -11,8 +13,15 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/menu", element: <Menu />, errorElement: <Error /> },
-      { path: "/cart", element: <Cart /> }
+      {
+        path: "/menu",
+        element: <Menu />,
+        errorElement: <Error />,
+        loader: menuLoader
+      },
+      { path: "/cart", element: <Cart /> },
+      { path: "/login", element: <Login /> },
+      { path: "/signup", element: <Signup /> }
     ]
   }
 ]);
