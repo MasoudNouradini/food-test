@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux";
 import { formatToCurrency } from "../../utils/helpFile";
+import { addItem } from "../cart/cartSlice";
 
 function MenuItem({ item }) {
   const {
@@ -8,6 +10,18 @@ function MenuItem({ item }) {
     strCategoryDescription,
     price
   } = item;
+  const dispatch = useDispatch();
+
+  function handleAddToCart() {
+    const newItem = {
+      idCategory,
+      strCategory,
+      quantity: 1,
+      price,
+      totalPrice: price * 1
+    };
+    dispatch(addItem(newItem));
+  }
   return (
     <li className="flex gap-2 py-2">
       <img src={strCategoryThumb} alt={strCategory} className="h-24" />
@@ -18,7 +32,10 @@ function MenuItem({ item }) {
         </p>
         <div className="mt-2 flex items-center justify-between">
           <p className="text-sm">{formatToCurrency(price)}</p>
-          <button className="rounded bg-secondary px-3 py-1 text-white">
+          <button
+            onClick={handleAddToCart}
+            className="rounded bg-secondary px-3 py-1 text-white"
+          >
             Add to cart
           </button>
         </div>
