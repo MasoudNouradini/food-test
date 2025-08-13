@@ -6,6 +6,7 @@ import Menu, { loader as menuLoader } from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
 import Login from "./ui/Login";
 import Signup from "./ui/Signup";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,10 @@ const router = createBrowserRouter([
         errorElement: <Error />,
         loader: menuLoader
       },
-      { path: "/cart", element: <Cart /> },
+      {
+        element: <ProtectedRoute />,
+        children: [{ path: "/cart", element: <Cart /> }]
+      },
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <Signup /> }
     ]

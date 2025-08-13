@@ -13,6 +13,7 @@ const cartSlice = createSlice({
       );
       if (existingItem) {
         existingItem.quantity += 1;
+        existingItem.totalPrice = existingItem.quantity * existingItem.price;
       } else {
         state.cart.push({ ...item, quantity: 1 });
       }
@@ -23,12 +24,12 @@ const cartSlice = createSlice({
     increaseItemQuantity(state, action) {
       const item = state.cart.find((item) => item.id === action.payload);
       item.quantity++;
-      item.totalPrice = item.quantity * item.unitPrice;
+      item.totalPrice = item.quantity * item.price;
     },
     decreaseItemQuantity(state, action) {
       const item = state.cart.find((item) => item.id === action.payload);
       item.quantity--;
-      item.totalPrice = item.quantity * item.totalPrice;
+      item.totalPrice = item.quantity * item.price;
     },
     clearCart(state) {
       state.cart = [];

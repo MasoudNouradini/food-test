@@ -1,8 +1,13 @@
 import { Link } from "react-router";
 import { Soup, LogIn } from "lucide-react";
 import CartButtonPreview from "../components/CartButtonPreview";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchQuery } from "./headerInputSlice";
+import HeaderAuth from "./HeaderAuth";
 
 function Header() {
+  const dispatch = useDispatch();
+  const query = useSelector(state => state.search.query);
   return (
     <header className="bg-primary border-b-2 py-4 px-6">
       <div className="max-w-6xl mx-auto flex items-center justify-between gap-x-8">
@@ -23,19 +28,15 @@ function Header() {
           <input
             type="text"
             placeholder="Search meals..."
+            value={query}
+            onChange={e => dispatch(setSearchQuery(e.target.value))}
             className="w-full max-w-sm px-3 py-1 rounded border border-gray-300 focus:outline-none"
           />
         </div>
 
         <div className="flex items-center gap-x-11">
           <CartButtonPreview />
-          <Link
-            to="/login"
-            className="flex items-center gap-x-2 bg-secondary hover:bg-orange-600 text-white px-4 py-2 rounded"
-          >
-            <LogIn className="w-5" />
-            SignIn
-          </Link>
+          <HeaderAuth />
         </div>
       </div>
     </header>

@@ -8,7 +8,7 @@ import {
   increaseItemQuantity
 } from "./cartSlice";
 
-function CartPreview() {
+function CartPreview({ title }) {
   const cart = useSelector(state => state.cart.cart);
   const dispatch = useDispatch();
 
@@ -49,7 +49,7 @@ function CartPreview() {
           </div>
 
           <span className="text-right whitespace-nowrap">
-            {item.quantity} × {formatToCurrency(item.price)}
+            {item.quantity} × {formatToCurrency(item.totalPrice)}
           </span>
         </div>
       )}
@@ -63,15 +63,10 @@ function CartPreview() {
         to="/cart"
         className="text-center flex justify-center items-center mt-2  bg-secondary rounded p-1"
       >
-        go to cart
+        {title}
       </Link>
     </div>
   );
 }
 
 export default CartPreview;
-
-/*
-   {cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}
-
-*/
