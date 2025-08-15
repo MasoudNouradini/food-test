@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import CartPreview from "../features/cart/CartPreview";
+import CartPreview from "../../features/cart/cartPreview";
+
 function CartButtonPreview() {
   const totalQuantity = useSelector(state =>
     state.cart.cart.reduce((sum, item) => sum + item.quantity, 0)

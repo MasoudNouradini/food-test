@@ -1,4 +1,4 @@
-import Hero from "../features/hero/Hero";
+import Hero from "./Hero";
 
 function Home() {
   return (

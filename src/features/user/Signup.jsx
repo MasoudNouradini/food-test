@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import { signup } from "../features/user/userSlice";
+import { signup } from "./userSlice";
 
 function Signup() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();

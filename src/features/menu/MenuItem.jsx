@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { formatToCurrency } from "../../utils/helpFile";
+import { formatToCurrency } from "../../utils/format";
 import { addItem } from "../cart/cartSlice";
 
 function MenuItem({ item }) {

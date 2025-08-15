@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../features/user/userSlice";
+import { logout } from "../../features/user/userSlice";
 import { Link } from "react-router";
 import { LogOut,LogIn } from "lucide-react";
 

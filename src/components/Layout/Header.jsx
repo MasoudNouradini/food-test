@@ -1,9 +1,9 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { Soup, LogIn } from "lucide-react";
-import CartButtonPreview from "../components/CartButtonPreview";
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchQuery } from "./headerInputSlice";
+import { setSearchQuery } from "../../features/search/headerInputSlice";
 import HeaderAuth from "./HeaderAuth";
+import CartButtonPreview from "./CartButtonPreview";
 
 function Header() {
   const dispatch = useDispatch();

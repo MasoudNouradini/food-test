@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import AppLayout from "./ui/AppLayout";
-import Home from "./ui/Home";
-import Error from "./ui/Error";
+import AppLayout from "./pages/layout/AppLayout";
+import Home from "./pages/home/Home";
+import Error from "./pages/error/Error";
 import Menu, { loader as menuLoader } from "./features/menu/Menu";
 import Cart from "./features/cart/Cart";
-import Login from "./ui/Login";
-import Signup from "./ui/Signup";
-import ProtectedRoute from "./ui/ProtectedRoute";
+import Login from "./features/user/Login";
+import Signup from "./features/user/Signup";
+import ProtectedRoute from "./pages/layout/ProtectedRoute";
 
 const router = createBrowserRouter([
   {

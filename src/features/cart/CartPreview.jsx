@@ -1,26 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
-import { formatToCurrency } from "../../utils/helpFile";
+import { formatToCurrency } from "../../utils/format";
 import { CirclePlus, CircleMinus, Trash } from "lucide-react";
 import {
   decreaseItemQuantity,
   deleteItem,
-  increaseItemQuantity
+  increaseItemQuantity,
+  selectTotalPriceCart
 } from "./cartSlice";
 
 function CartPreview({ title }) {
   const cart = useSelector(state => state.cart.cart);
+  const totalPrice = useSelector(selectTotalPriceCart);
   const dispatch = useDispatch();
 
-  function handleIncrease(id) {
-    dispatch(increaseItemQuantity(id));
-  }
-  function handleDeacrease(id) {
-    dispatch(decreaseItemQuantity(id));
-  }
-  function handleDeleteItem(id) {
-    dispatch(deleteItem(id));
-  }
+  if (!totalPrice)
+    return <p className="font-semibold">Your shopping cart is empty!</p>;
   return (
     <div>
       {cart.map(item =>
@@ -34,30 +29,28 @@ function CartPreview({ title }) {
 
           <div className="flex items-center gap-x-2">
             <CirclePlus
-              onClick={() => handleIncrease(item.id)}
+              onClick={() => dispatch(increaseItemQuantity(item.id))}
               className="size-5 cursor-pointer"
             />
             {item.quantity <= 1
               ? <Trash
                   className="size-5 cursor-pointer"
-                  onClick={() => handleDeleteItem(item.id)}
+                  onClick={() => dispatch(deleteItem(item.id))}
                 />
               : <CircleMinus
-                  onClick={() => handleDeacrease(item.id)}
+                  onClick={() => dispatch(decreaseItemQuantity(item.id))}
                   className="size-5 cursor-pointer"
                 />}
           </div>
 
           <span className="text-right whitespace-nowrap">
-            {item.quantity} × {formatToCurrency(item.totalPrice)}
+            {item.quantity} × {formatToCurrency(item.price * item.quantity)}
           </span>
         </div>
       )}
       <div className="mt-2 font-bold text-sm">
         Total Price:
-        {formatToCurrency(
-          cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
-        )}
+        {formatToCurrency(totalPrice)}
       </div>
       <Link
         to="/cart"
