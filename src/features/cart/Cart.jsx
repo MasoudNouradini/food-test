@@ -1,4 +1,5 @@
-import CartPreview from "./CartPreview";
+import CartPreview from "./cartPreview";
+
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { clearCart } from "./cartSlice";
