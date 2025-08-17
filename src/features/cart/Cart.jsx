@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { clearCart } from "./cartSlice";
 import { useNavigate } from "react-router-dom";
-import CartPreview from "./cartPreview";
+import CartPreview from "./CartPreview";
 function Cart() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
