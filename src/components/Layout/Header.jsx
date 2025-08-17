@@ -1,46 +1,94 @@
 import { Link } from "react-router-dom";
-import { Soup, LogIn } from "lucide-react";
+import { Soup, Menu as MenuIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchQuery } from "../../features/search/headerInputSlice";
 import HeaderAuth from "./HeaderAuth";
 import CartButtonPreview from "./CartButtonPreview";
-
+import { useState } from "react";
 function Header() {
   const dispatch = useDispatch();
   const query = useSelector(state => state.search.query);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(prev => !prev);
+
+  
+
   return (
-    <header className="bg-primary border-b-2 py-4 px-6">
-      <div className="max-w-6xl mx-auto flex items-center justify-between gap-x-8">
-        <div className="flex items-center gap-x-6">
-          <Link
-            to="/"
-            className="flex items-center gap-x-2  text-2xl font-bold"
-          >
+    <>
+      <header className="bg-primary border-b-2">
+        <div className="max-w-6xl mx-auto flex items-center justify-between py-3 px-4 sm:px-6 gap-4">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 text-2xl font-bold">
             Let'sFood <Soup className="text-secondary" />
           </Link>
-          <nav className="flex gap-x-6 text-sm font-semibold">
+
+          {/* Navigation - Desktop */}
+          <nav className="hidden sm:flex gap-x-6 text-sm font-semibold">
             <Link to="/">Home</Link>
             <Link to="/menu">Menu</Link>
           </nav>
+
+          {/* Search - Desktop */}
+          <div className="hidden sm:block flex-1 max-w-sm mx-4">
+            <input
+              type="text"
+              placeholder="Search meals..."
+              value={query}
+              onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+              className="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary"
+            />
+          </div>
+
+          {/* Buttons */}
+          <div className="flex items-center gap-4">
+            <button
+              className="sm:hidden p-2 rounded hover:bg-gray-200"
+              onClick={toggleMenu}
+              aria-label="Toggle Menu"
+            >
+              <MenuIcon className="w-6 h-6 text-gray-700" />
+            </button>
+
+            <CartButtonPreview />
+            <HeaderAuth />
+          </div>
         </div>
 
-        <div className="flex-1 flex justify-center">
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <nav className="sm:hidden px-4 py-2 flex flex-col gap-2 bg-primary border-t border-gray-200">
+            <Link
+              to="/"
+              className="py-2 hover:bg-gray-100 rounded"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Home
+            </Link>
+            <Link
+              to="/menu"
+              className="py-2 hover:bg-gray-100 rounded"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Menu
+            </Link>
+          </nav>
+        )}
+
+        {/* Mobile Search */}
+        <div className="sm:hidden px-4 py-2 bg-primary border-b border-gray-200">
           <input
             type="text"
             placeholder="Search meals..."
             value={query}
-            onChange={e => dispatch(setSearchQuery(e.target.value))}
-            className="w-full max-w-sm px-3 py-1 rounded border border-gray-300 focus:outline-none"
+            onChange={(e) => dispatch(setSearchQuery(e.target.value))}
+            className="w-full px-3 py-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-secondary"
           />
         </div>
-
-        <div className="flex items-center gap-x-11">
-          <CartButtonPreview />
-          <HeaderAuth />
-        </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
+
 }
 
 export default Header;

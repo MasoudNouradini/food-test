@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { formatToCurrency } from "../../utils/format";
 import { addItem } from "../cart/cartSlice";
+import toast from "react-hot-toast";
 
 function MenuItem({ item }) {
   const {
@@ -21,30 +22,42 @@ function MenuItem({ item }) {
       totalPrice: price * 1
     };
     dispatch(addItem(newItem));
+    toast.success(`${item.strCategory} added to cart!`);
   }
+
   return (
-    <li className="flex gap-2 py-2">
-      <img src={strCategoryThumb} alt={strCategory} className="h-24" />
-      <div className="flex grow flex-col pt-0.5">
-        <p className="font-medium">
-          {strCategory}
-        </p>
-        <p className="line-clamp-1 text-sm capitalize italic text-stone-500">
-          {strCategoryDescription}
-        </p>
-        <div className="mt-2 flex items-center justify-between">
-          <p className="text-sm">
+    <div className="flex flex-col sm:flex-row gap-4">
+      {/* تصویر */}
+      <img
+        src={strCategoryThumb}
+        alt={strCategory}
+        className="w-full sm:w-28 h-28 object-cover rounded-lg flex-shrink-0"
+      />
+
+      {/* متن و دکمه */}
+      <div className="flex flex-col justify-between grow">
+        <div>
+          <p className="font-semibold text-lg">
+            {strCategory}
+          </p>
+          <p className="mt-1 text-sm text-stone-500 line-clamp-2">
+            {strCategoryDescription}
+          </p>
+        </div>
+
+        <div className="mt-3 flex items-center justify-between">
+          <p className="font-medium text-secondary">
             {formatToCurrency(price)}
           </p>
           <button
             onClick={handleAddToCart}
-            className="rounded bg-secondary px-3 py-1 text-white"
+            className="bg-secondary text-white px-4 py-2 rounded hover:bg-secondary/90 transition"
           >
             Add to cart
           </button>
         </div>
       </div>
-    </li>
+    </div>
   );
 }
 

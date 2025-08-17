@@ -11,8 +11,15 @@ function Menu() {
     item.strCategory.toLowerCase().includes(query.toLowerCase())
   );
   return (
-    <ul className="divide-y divide-stone-200 px-2">
-      {filteredMenu.map(item => <MenuItem key={item.idCategory} item={item} />)}
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-6 px-4 sm:px-6">
+      {filteredMenu.map(item =>
+        <li
+          key={item.idCategory}
+          className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow"
+        >
+          <MenuItem item={item} />
+        </li>
+      )}
     </ul>
   );
 }

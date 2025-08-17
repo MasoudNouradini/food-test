@@ -33,7 +33,7 @@ function CartButtonPreview() {
             transition={{ duration: 0.2 }}
             className="absolute top-full right-0 mt-2 w-80 bg-white/80 backdrop-blur-lg border border-gray-200 shadow-xl rounded-xl p-4 z-50"
           >
-            <CartPreview title="View Cart" />
+            <CartPreview title="View Cart" variant="small" />
           </motion.div>}
       </AnimatePresence>
     </div>

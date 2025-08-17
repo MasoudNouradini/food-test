@@ -22,56 +22,63 @@ function Login() {
   };
 
   return (
-    <div className="bg-background p-5 mx-auto w-[70%] ">
-      <div className="flex items-center text-xl font-semibold justify-between">
-        <h1>Food</h1>
-        <p>welcome Back!</p>
-      </div>
-      <h1 className="font-semibold text-center text-3xl my-5 ">Login</h1>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col items-center "
-      >
-        <div className="flex flex-col w-80 mb-4">
-          <label className="text-left mb-1">Email</label>
-          <input
-            {...register("email", { required: "Email is required" })}
-            type="email"
-            className="p-2 border rounded"
-            placeholder="Enter Your Email"
-          />
-          {errors.email &&
-            <p className="text-error">
-              {errors.email.message}
-            </p>}
-        </div>
+    <div className="min-h-[calc(100vh-64px)] flex items-center justify-center bg-background px-4">
+      <div className="w-full max-w-md bg-white p-6 sm:p-8 rounded-lg shadow-md">
+        <h1 className="text-3xl font-bold text-center mb-2">Login</h1>
+        <p className="text-center text-gray-600 mb-6">
+          Welcome back! Please login to your account.
+        </p>
 
-        <div className="flex flex-col w-80 mb-6">
-          <label className="text-left mb-1">Password</label>
-          <input
-            {...register("password", { required: "Password is required" })}
-            type="password"
-            placeholder="****"
-            className="p-2 border rounded"
-          />
-          {errors.password &&
-            <p className="text-error">
-              {errors.password.message}
-            </p>}
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Email */}
+          <div>
+            <label className="mb-1 block font-medium">Email</label>
+            <input
+              {...register("email", { required: "Email is required" })}
+              type="email"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-secondary/60 focus:border-secondary/60 transition"
+              placeholder="Enter your email"
+            />
+            {errors.email &&
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>}
+          </div>
 
-        <div className="flex justify-center items-center gap-4">
-          <button type="submit" className="p-3 my-3 rounded bg-secondary">
+          {/* Password */}
+          <div>
+            <label className="mb-1 block font-medium">Password</label>
+            <input
+              {...register("password", { required: "Password is required" })}
+              type="password"
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-secondary/60 focus:border-secondary/60 transition"
+              placeholder="••••••"
+            />
+            {errors.password &&
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>}
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full bg-secondary text-white p-3 rounded-md hover:bg-secondary/90 transition font-medium"
+          >
             Login
           </button>
+        </form>
+
+        <p className="text-center text-sm text-gray-600 mt-6">
+          Don’t have an account?{" "}
           <Link
             to="/signup"
-            className="p-3 my-3 bg-text rounded   text-secondary"
+            className="text-secondary font-semibold hover:underline"
           >
             Signup
           </Link>
-        </div>
-      </form>
+        </p>
+      </div>
     </div>
   );
 }
