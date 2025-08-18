@@ -28,7 +28,7 @@ function CartOverview({ title, onConfirm, variant = "small" }) {
 
   return (
     <div
-      className={`${containerClass} bg-white rounded shadow-md hover:shadow-lg transition`}
+      className={`${containerClass} bg-white rounded shadow-md hover:shadow-lg transition relative left-0 sm:left-auto`}
     >
       {cart.map(item =>
         <div
