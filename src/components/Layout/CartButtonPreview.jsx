@@ -31,7 +31,9 @@ function CartButtonPreview() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -5 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full right-0 mt-2 w-80 bg-white/80 backdrop-blur-lg border border-gray-200 shadow-xl rounded-xl p-4 z-50"
+            className="absolute top-full mt-2 w-80 bg-white/80 backdrop-blur-lg border border-gray-200 shadow-xl rounded-xl p-4 z-50 
+             left-1/2 -translate-x-1/2 
+             sm:left-auto sm:right-0 sm:translate-x-0"
           >
             <CartOverview title="View Cart" variant="small" />
           </motion.div>}

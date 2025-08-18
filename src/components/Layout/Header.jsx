@@ -5,6 +5,7 @@ import { setSearchQuery } from "../../features/search/headerInputSlice";
 import HeaderAuth from "./HeaderAuth";
 import CartButtonPreview from "./CartButtonPreview";
 import { useState } from "react";
+
 function Header() {
   const dispatch = useDispatch();
   const query = useSelector(state => state.search.query);
@@ -18,8 +19,8 @@ function Header() {
     <>
       <header className="bg-primary border-b-2">
         <div className="max-w-6xl mx-auto flex items-center justify-between py-3 px-4 sm:px-6 gap-4">
-          <Link to="/" className="flex items-center gap-2 text-2xl font-bold">
-            Let'sFood <Soup className="text-secondary" />
+          <Link to="/" className="flex items-center gap-2 font-bold text-xl sm:text-2xl">
+            Let'sFood <Soup className="text-secondary hidden sm:block " />
           </Link>
 
           <nav className="hidden sm:flex gap-x-6 text-sm font-semibold">
@@ -37,21 +38,34 @@ function Header() {
             />
           </div>
 
-          <div className="flex items-center gap-4">
-            <button
-              className="sm:hidden p-2 rounded hover:bg-gray-200"
-              onClick={toggleMenu}
-              aria-label="Toggle Menu"
-            >
-              <MenuIcon className="w-6 h-6 text-gray-700" />
-            </button>
+<div className="flex items-center gap-4">
+  <button
+    className="sm:hidden p-2 rounded hover:bg-gray-200"
+    onClick={toggleMenu}
+    aria-label="Toggle Menu"
+  >
+    <MenuIcon className="w-6 h-6 text-gray-700" />
+  </button>
 
-            <CartButtonPreview />
-            <HeaderAuth />
-          </div>
+  {/* دسکتاپ → هر دو کنار هم */}
+  <div className="hidden sm:flex items-center gap-4">
+    <CartButtonPreview />
+    <HeaderAuth />
+  </div>
+
+  {/* موبایل → سبد خرید میاد پایین سمت چپ */}
+  <div className="sm:hidden  absolute top-6 left-[130px] z-50">
+    <CartButtonPreview />
+  </div>
+
+  {/* موبایل → signin بمونه بالا */}
+  <div className="sm:hidden">
+    <HeaderAuth />
+  </div>
+</div>
+
         </div>
 
-        {/* Mobile Menu */}
         {isMenuOpen && (
           <nav className="sm:hidden px-4 py-2 flex flex-col gap-2 bg-primary border-t border-gray-200">
             <Link
@@ -66,7 +80,7 @@ function Header() {
               className="py-2 hover:bg-gray-100 rounded"
               onClick={() => setIsMenuOpen(false)}
             >
-              MenuItem
+              Menu
             </Link>
           </nav>
         )}
