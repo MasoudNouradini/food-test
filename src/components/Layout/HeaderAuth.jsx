@@ -10,19 +10,18 @@ function HeaderAuth() {
 return (
   <>
     {isLoggedIn ? (
-      <>
-<span className="flex items-center gap-2 bg-orange-light text-text px-3 py-1 rounded-full text-sm font-medium">
-  Hi, <span className="text-orange-dark font-bold">{user?.name}</span>
-</span>
-       <button
-            onClick={() => dispatch(logout())}
-            className="flex rounded items-center gap-x-2 bg-error hover:bg-red-dark text-white px-4 py-2"
-          >
-            <LogOut className="w-5" />
-            Logout
-          </button>
-
-      </>
+<div className="flex items-center gap-x-3 sm:gap-x-2">
+  <span className="flex items-center gap-2 bg-orange-light text-text px-3 py-1 rounded-full text-sm font-medium">
+    Hi, <span className="text-orange-dark font-bold">{user?.name}</span>
+  </span>
+  <button
+    onClick={() => dispatch(logout())}
+    className="flex rounded items-center gap-x-2 bg-error hover:bg-red-dark text-white px-4 py-2"
+  >
+    <LogOut className="w-5" />
+    Logout
+  </button>
+</div>
     ) : (
     <Link
           to="/login"
