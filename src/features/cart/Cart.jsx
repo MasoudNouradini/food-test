@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { clearCart } from "./cartSlice";
 import { useNavigate } from "react-router-dom";
-import CartPreview from "./CartPreview";
+import CartOverview from "./CartOverview ";
 function Cart() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ function Cart() {
 
   return (
     <div className="flex justify-center mt-6 px-4">
-      <CartPreview
+      <CartOverview
         title="Confirm & Continue Shopping"
         onConfirm={handleConfirm}
         variant="large"

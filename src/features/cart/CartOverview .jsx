@@ -9,7 +9,7 @@ import {
   selectTotalPriceCart
 } from "./cartSlice";
 
-function CartPreview({ title, onConfirm, variant = "small" }) {
+function CartOverview({ title, onConfirm, variant = "small" }) {
   const cart = useSelector(state => state.cart.cart);
   const totalPrice = useSelector(selectTotalPriceCart);
   const dispatch = useDispatch();
@@ -85,4 +85,4 @@ function CartPreview({ title, onConfirm, variant = "small" }) {
   );
 }
 
-export default CartPreview;
+export default CartOverview;

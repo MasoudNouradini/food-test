@@ -18,18 +18,15 @@ function Header() {
     <>
       <header className="bg-primary border-b-2">
         <div className="max-w-6xl mx-auto flex items-center justify-between py-3 px-4 sm:px-6 gap-4">
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-2 text-2xl font-bold">
             Let'sFood <Soup className="text-secondary" />
           </Link>
 
-          {/* Navigation - Desktop */}
           <nav className="hidden sm:flex gap-x-6 text-sm font-semibold">
             <Link to="/">Home</Link>
             <Link to="/menu">Menu</Link>
           </nav>
 
-          {/* Search - Desktop */}
           <div className="hidden sm:block flex-1 max-w-sm mx-4">
             <input
               type="text"
@@ -40,7 +37,6 @@ function Header() {
             />
           </div>
 
-          {/* Buttons */}
           <div className="flex items-center gap-4">
             <button
               className="sm:hidden p-2 rounded hover:bg-gray-200"
@@ -75,7 +71,6 @@ function Header() {
           </nav>
         )}
 
-        {/* Mobile Search */}
         <div className="sm:hidden px-4 py-2 bg-primary border-b border-gray-200">
           <input
             type="text"
