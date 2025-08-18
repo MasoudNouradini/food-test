@@ -66,7 +66,7 @@ function Header() {
               className="py-2 hover:bg-gray-100 rounded"
               onClick={() => setIsMenuOpen(false)}
             >
-              Menu
+              MenuItem
             </Link>
           </nav>
         )}
