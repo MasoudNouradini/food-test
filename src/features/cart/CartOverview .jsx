@@ -23,8 +23,8 @@ function CartOverview({ title, onConfirm, variant = "small" }) {
 
   const containerClass =
     variant === "small"
-      ? "w-full sm:max-w-xs p-4 sm:p-3"
-      : "w-full max-w-2xl p-6";
+      ? "w-full sm:max-w-xs p-4 sm:p-3 mx-auto"
+      : "w-full max-w-2xl p-6  mx-auto";
 
   return (
     <div
